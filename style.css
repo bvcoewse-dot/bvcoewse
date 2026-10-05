@@ -1,0 +1,859 @@
+/* =========================================================
+   BHARATI VIDYAPEETH'S COLLEGE OF ENGINEERING FOR WOMEN
+   AUTOMATIC TIMETABLE MANAGEMENT SYSTEM
+========================================================= */
+
+:root {
+    --navy: #102a43;
+    --navy-dark: #081c2d;
+    --blue: #1e5f88;
+    --blue-light: #eaf3f8;
+    --gold: #d2a94e;
+    --maroon: #8c2437;
+    --white: #ffffff;
+    --cream: #f7f8fa;
+    --text: #243447;
+    --muted: #64748b;
+    --border: #d9e2e8;
+    --shadow: 0 10px 30px rgba(16, 42, 67, .12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: #f5f7f8;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   LOGIN PAGE - USER'S COLLEGE BUILDING PHOTO
+========================================================= */
+
+#loginPage {
+    min-height: 100vh;
+    padding: 42px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 22, 36, .84) 0%,
+            rgba(16, 42, 67, .72) 48%,
+            rgba(16, 42, 67, .35) 100%
+        ),
+        url("college-building.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#loginPage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,0,0,.12),
+            transparent 55%
+        );
+    pointer-events: none;
+}
+
+.login-college-header {
+    width: min(100%, 1100px);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+.logo-badge {
+    width: 112px;
+    height: 112px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,.30);
+}
+
+.logo-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.university-name {
+    margin: 0 0 5px;
+    color: #ffd976;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2.4px;
+}
+
+.login-heading h1 {
+    margin: 0;
+    max-width: 850px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.12;
+    text-shadow: 0 3px 12px rgba(0,0,0,.45);
+}
+
+.gold-line {
+    width: 140px;
+    height: 4px;
+    margin: 15px 0;
+    background: var(--gold);
+    border-radius: 5px;
+}
+
+.login-heading h2 {
+    margin: 0 0 7px;
+    font-size: clamp(18px, 2.5vw, 25px);
+    font-weight: 600;
+    color: white;
+}
+
+.login-subtitle {
+    margin: 0;
+    color: #e2eff5;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Login form */
+
+#loginPage main {
+    width: min(100%, 430px);
+    position: relative;
+    z-index: 1;
+}
+
+#loginForm {
+    background: rgba(255,255,255,.97);
+    padding: 32px;
+    border-radius: 14px;
+    border-top: 5px solid var(--gold);
+    box-shadow: 0 24px 60px rgba(0,0,0,.32);
+}
+
+#loginForm > div {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--text);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    outline: none;
+    transition: .2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(30,95,136,.13);
+}
+
+button {
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: all .2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+#loginForm button {
+    width: 100%;
+    padding: 13px 18px;
+    color: white;
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    box-shadow: 0 6px 16px rgba(16,42,67,.22);
+}
+
+#loginMessage,
+#conflictMessage,
+#generationMessage {
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   MAIN WEBSITE
+========================================================= */
+
+#mainApplication {
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.35),
+            rgba(255, 255, 255, 0.35)
+        ),
+        url("college-building.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 13px 28px;
+    background: white;
+    border-bottom: 4px solid var(--gold);
+    box-shadow: 0 4px 18px rgba(16,42,67,.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.main-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.main-logo {
+    width: 62px;
+    height: 62px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    border: 2px solid var(--gold);
+}
+
+.main-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brand-top {
+    margin: 0 0 2px;
+    color: var(--maroon);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.main-brand h1 {
+    margin: 0;
+    color: var(--navy);
+    font-family: Georgia, serif;
+    font-size: 21px;
+    line-height: 1.18;
+}
+
+.system-title {
+    margin: 4px 0 0;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Navigation */
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+nav button {
+    padding: 9px 12px;
+    background: var(--blue-light);
+    color: var(--navy);
+    border: 1px solid #d5e2ea;
+    font-size: 12px;
+}
+
+nav button:hover {
+    background: var(--navy);
+    color: white;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+#mainApplication > main {
+    width: min(1400px, calc(100% - 44px));
+    margin: 0 auto;
+    padding: 38px 0 55px;
+}
+
+section > h2 {
+    margin: 0 0 25px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: var(--navy);
+    font-family: Georgia, serif;
+    font-size: clamp(27px, 3vw, 36px);
+}
+
+section > h2::before {
+    content: "";
+    width: 7px;
+    height: 40px;
+    border-radius: 4px;
+    background: var(--gold);
+}
+
+article,
+#dashboardSection > section {
+    margin-bottom: 24px;
+    padding: 25px;
+    background: rgba(255,255,255,.98);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+article > h3,
+#dashboardSection > section h3 {
+    margin: 0 0 18px;
+    padding-bottom: 10px;
+    color: var(--navy);
+    font-size: 19px;
+    border-bottom: 2px solid #edf1f4;
+}
+
+/* Dashboard cards */
+
+#dashboardCards {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+#dashboardCards article {
+    min-height: 145px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-top: 5px solid var(--blue);
+}
+
+#dashboardCards article:nth-child(even) {
+    border-top-color: var(--maroon);
+}
+
+#dashboardCards article h3 {
+    margin-bottom: 8px;
+    padding: 0;
+    font-size: 14px;
+    border: none;
+}
+
+#dashboardCards article p {
+    margin: 0;
+    color: var(--navy);
+    font-size: 34px;
+    font-weight: 800;
+}
+
+/* Forms */
+
+form:not(#loginForm) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+    align-items: end;
+    gap: 16px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+#teacherForm button,
+#subjectForm button,
+#roomForm button,
+#assignmentForm button,
+#generateButton,
+#downloadButton,
+#printButton {
+    min-height: 45px;
+    padding: 11px 18px;
+    color: white;
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    box-shadow: 0 5px 13px rgba(16,42,67,.18);
+}
+
+/* Tables */
+
+article {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 12px 10px;
+    border: 1px solid #e0e7ec;
+    text-align: left;
+    font-size: 13px;
+}
+
+thead th {
+    color: white;
+    background: var(--navy);
+    white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+    background: #f7fafc;
+}
+
+tbody tr:hover {
+    background: #edf6fb;
+}
+
+/* Timetable */
+
+.timetable-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.timetable-wrapper table {
+    min-width: 850px;
+}
+
+.semester-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.semester-selector label {
+    min-width: 130px;
+    margin: 0;
+}
+
+.semester-selector select {
+    max-width: 250px;
+}
+
+#generateButton,
+#downloadButton,
+#printButton {
+    margin: 8px 8px 8px 0;
+}
+
+/* =========================================================
+   COLLEGE CONTACT FOOTER
+========================================================= */
+
+.college-footer {
+    color: white;
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+    border-top: 5px solid var(--gold);
+}
+
+.footer-top {
+    width: min(1320px, calc(100% - 44px));
+    margin: 0 auto;
+    padding: 34px 0;
+    display: grid;
+    grid-template-columns: 1.05fr 1.5fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-logo {
+    width: 78px;
+    height: 78px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--gold);
+}
+
+.footer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-brand-top {
+    margin: 0 0 4px;
+    color: #f3ce72;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.footer-brand h3 {
+    margin: 0 0 5px;
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
+
+.footer-brand p:last-child {
+    margin: 0;
+    color: #c6dae5;
+    font-size: 13px;
+}
+
+.footer-contact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #dce9ef;
+    font-size: 12px;
+}
+
+.contact-icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    color: var(--gold);
+    border: 1px solid rgba(210,169,78,.7);
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+.contact-item strong,
+.contact-item span:not(.contact-icon) {
+    display: block;
+}
+
+.contact-item strong {
+    margin-bottom: 3px;
+    color: var(--gold);
+}
+
+.footer-bottom {
+    padding: 13px 20px;
+    text-align: center;
+    background: #061522;
+    color: #a9c0cd;
+    font-size: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1150px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        justify-content: flex-start;
+    }
+
+    #dashboardCards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    #loginPage {
+        padding: 32px 16px;
+        background-position: center;
+    }
+
+    .login-college-header {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+    }
+
+    .gold-line {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .logo-badge {
+        width: 88px;
+        height: 88px;
+    }
+
+    .main-header {
+        padding: 13px 16px;
+    }
+
+    .main-brand h1 {
+        font-size: 17px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav button {
+        flex: 1 1 110px;
+    }
+
+    #mainApplication > main {
+        width: calc(100% - 24px);
+        padding-top: 25px;
+    }
+
+    article,
+    #dashboardSection > section {
+        padding: 17px;
+    }
+
+    #dashboardCards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    form:not(#loginForm) {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        width: calc(100% - 30px);
+    }
+
+    .footer-contact {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 440px) {
+    #loginForm {
+        padding: 24px;
+    }
+
+    #dashboardCards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .main-brand {
+        gap: 10px;
+    }
+}
+/* IMPORTANT - Fix login page visibility */
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================================
+   PRACTICAL BATCH UI
+========================================================= */
+
+.batch-manager {
+    margin-top: 8px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #f8fbfd;
+}
+
+.batch-manager[hidden] {
+    display: none !important;
+}
+
+.batch-manager-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.batch-manager-row select {
+    flex: 1 1 220px;
+}
+
+.batch-manager-row button {
+    flex: 0 0 auto;
+}
+
+.batch-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 6px;
+    min-height: 10px;
+}
+
+.batch-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.batch-remove {
+    width: 20px !important;
+    height: 20px;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.18) !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    line-height: 20px !important;
+    cursor: pointer;
+}
+
+.batch-remove:hover {
+    background: rgba(255,255,255,.35) !important;
+}
+
+.table-batch-badge {
+    display: inline-block;
+    margin: 2px;
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: var(--blue-light);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.timetable-batch {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: var(--gold);
+    color: #1d2939;
+    font-size: 10px;
+    font-weight: 800;
+    vertical-align: middle;
+}
+
+.practical-cell .subject-cell {
+    margin: 4px 0;
+}
+
+#assignmentBatchContainer {
+    margin-top: 8px;
+}
+
+#assignmentBatchContainer select {
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+    .batch-manager-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .batch-manager-row select,
+    .batch-manager-row button {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+}
+
+
+/* BULK PRACTICAL BATCH ASSIGNMENT */
+#bulkBatchArticle { margin-top:18px; }
+.bulk-batch-help { margin:0 0 14px; color:var(--muted); }
+.bulk-batch-toolbar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+.bulk-batch-toolbar button, .bulk-batch-picker button { width:auto; margin:0; }
+.secondary-button { background:#eef3f7 !important; color:var(--navy) !important; border:1px solid var(--border) !important; }
+.bulk-batch-subjects { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px; max-height:300px; overflow:auto; padding:10px; border:1px solid var(--border); border-radius:10px; background:#f8fbfd; }
+.bulk-subject-option { display:flex; align-items:flex-start; gap:9px; padding:10px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; }
+.bulk-subject-option:hover { border-color:var(--gold); }
+.bulk-subject-option input { margin-top:3px; }
+.bulk-subject-option strong { color:var(--navy); display:block; }
+.bulk-subject-option small { display:block; color:var(--muted); margin-top:3px; }
+.bulk-existing-batches { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+.bulk-existing-batches span { font-size:10px; font-weight:700; padding:3px 6px; border-radius:5px; background:var(--blue-light); color:var(--navy); }
+.bulk-batch-picker { margin-top:14px; padding:12px; border:1px solid var(--border); border-radius:10px; background:#fff; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.bulk-batch-picker label { display:inline-flex; align-items:center; gap:5px; font-weight:700; }
+.bulk-batch-message { min-height:20px; margin:10px 0 0; font-weight:700; color:var(--navy); }
+.empty-bulk-batch { grid-column:1/-1; color:var(--muted); margin:5px; }
+@media (max-width:700px){ .bulk-batch-picker { align-items:flex-start; flex-direction:column; } .bulk-batch-picker button { width:100%; } }

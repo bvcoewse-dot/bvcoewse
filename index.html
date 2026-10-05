@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        BVCOEW Automatic Timetable Management System
+    </title>
+    <link rel="stylesheet" href="style.css">
+
+
+    <!--
+        CSS will be added later.
+        For now, this file contains HTML only.
+    -->
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<section id="loginPage">
+
+    <div class="login-overlay"></div>
+
+    <header class="login-college-header">
+        <div class="logo-badge" aria-label="Bharati Vidyapeeth Logo">
+            <img src="https://d107tomoq7qta0.cloudfront.net/images/universities-logos/pcU6Zba12mosyv7i5H5iyetOd1KRG2Hdz2LN67im.jpg" alt="Bharati Vidyapeeth Logo">
+        </div>
+
+        <div class="login-heading">
+            <p class="university-name">BHARATI VIDYAPEETH</p>
+            <h1>College of Engineering for Women, Pune</h1>
+            <div class="gold-line"></div>
+            <h2>Automatic Timetable Management System</h2>
+            <p class="login-subtitle">Faculty &amp; Administrator Portal</p>
+        </div>
+    </header>
+
+<main>
+
+        <form id="loginForm">
+
+            <div>
+
+                <label for="username">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="username"
+                    name="username"
+                    placeholder="Enter email"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit">
+                Login
+            </button>
+
+
+            <p id="loginMessage">
+            </p>
+
+        </form>
+
+    </main>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN APPLICATION
+===================================================== -->
+
+<section id="mainApplication"
+         hidden>
+
+
+    <!-- =================================================
+         NAVIGATION BAR
+    ================================================== -->
+
+    <header class="main-header">
+        <div class="main-brand">
+            <div class="main-logo">
+                <img src="https://d107tomoq7qta0.cloudfront.net/images/universities-logos/pcU6Zba12mosyv7i5H5iyetOd1KRG2Hdz2LN67im.jpg" alt="Bharati Vidyapeeth Logo">
+            </div>
+            <div>
+                <p class="brand-top">BHARATI VIDYAPEETH</p>
+                <h1>College of Engineering for Women, Pune</h1>
+                <p class="system-title">Automatic Timetable Management System</p>
+            </div>
+        </div>
+
+
+        <nav>
+
+            <button type="button"
+                    id="dashboardButton">
+
+                Dashboard
+
+            </button>
+
+
+            <button type="button"
+                    id="teachersButton">
+
+                Teachers
+
+            </button>
+
+
+            <button type="button"
+                    id="subjectsButton">
+
+                Subjects
+
+            </button>
+
+
+            <button type="button"
+                    id="roomsButton">
+
+                Classrooms & Labs
+
+            </button>
+
+
+            <button type="button"
+                    id="timetableButton">
+
+                Timetable
+
+            </button>
+            
+            <button type="button" 
+                id="resetButton">
+                Reset System
+            </button>
+
+
+            <button type="button"
+                    id="logoutButton">
+
+                Logout
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main>
+
+
+        <!-- =============================================
+             DASHBOARD
+        ============================================== -->
+
+        <section id="dashboardSection">
+
+            <h2>
+                BVCOEW Timetable Dashboard
+            </h2>
+
+
+            <div id="dashboardCards">
+
+
+                <article>
+
+                    <h3>
+                        Teachers
+                    </h3>
+
+                    <p id="teacherCount">
+                        0
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <h3>
+                        Subjects
+                    </h3>
+
+                    <p id="subjectCount">
+                        0
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <h3>
+                        Classrooms
+                    </h3>
+
+                    <p id="classroomCount">
+                        0
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <h3>
+                        Laboratories
+                    </h3>
+
+                    <p id="laboratoryCount">
+                        0
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <h3>
+                        Timetable Entries
+                    </h3>
+
+                    <p id="timetableCount">
+                        0
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+            <section>
+
+                <h3>
+                    System Information
+                </h3>
+
+                <p>
+                    Manage faculty members, subjects, classrooms, laboratories and
+                    automatically generated academic timetables from one centralized system.
+                </p>
+
+            </section>
+
+        </section>
+
+
+        <!-- =============================================
+             TEACHER MANAGEMENT
+        ============================================== -->
+
+        <section id="teacherSection"
+                 hidden>
+
+            <h2>
+                👨‍🏫 Teacher Management
+            </h2>
+
+
+            <!-- ADD TEACHER -->
+
+            <article>
+
+                <h3>
+                    Add Teacher
+                </h3>
+
+
+                <form id="teacherForm">
+
+
+                    <div>
+
+                        <label for="teacherId">
+                            Teacher ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="teacherId"
+                            name="teacherId"
+                            placeholder="Example: T001"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="teacherName">
+                            Teacher Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="teacherName"
+                            name="teacherName"
+                            placeholder="Example: Dr. Amit Sharma"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="teacherEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="teacherEmail"
+                            name="teacherEmail"
+                            placeholder="teacher@university.edu"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="teacherDepartment">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="teacherDepartment"
+                            name="teacherDepartment"
+                            placeholder="Example: Computer Science"
+                        >
+
+                    </div>
+
+
+                    <button type="submit">
+                        Add Teacher
+                    </button>
+
+
+                </form>
+
+            </article>
+
+
+            <!-- TEACHER TABLE -->
+
+            <article>
+
+                <h3>
+                    Registered Teachers
+                </h3>
+
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Teacher ID
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="teacherTableBody">
+
+                        <!-- Teachers will be inserted here -->
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+        </section>
+
+
+        <!-- =============================================
+             SUBJECT MANAGEMENT
+        ============================================== -->
+
+        <section id="subjectSection" hidden>
+
+            <h2>📚 Subject Management</h2>
+
+            <article>
+                <h3>Add SPPU Subject</h3>
+
+                <form id="subjectForm">
+
+                    <div>
+                        <label for="academicYear">Academic Year</label>
+                        <select id="academicYear" required>
+                            <option value="">Select Academic Year</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="subjectYear">Year</label>
+                        <select id="subjectYear" required>
+                            <option value="">Select Year</option>
+                            <option value="2">Second Year</option>
+                            <option value="3">Third Year</option>
+                            <option value="4">Fourth Year</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="subjectSemester">Semester</label>
+                        <select id="subjectSemester" required>
+                            <option value="">Select Semester</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="subjectSelect">SPPU Subject</label>
+                        <select id="subjectSelect" required disabled>
+                            <option value="">First select semester</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="subjectType">Subject Type</label>
+                        <select id="subjectType" required disabled>
+                            <option value="">Automatically selected</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="subjectTeacher">Faculty</label>
+                        <select id="subjectTeacher" required>
+                            <option value="">Select Faculty</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="weeklyClasses">Lectures / Week</label>
+                        <input type="number" id="weeklyClasses"
+                               min="1" max="10"
+                               required disabled>
+                    </div>
+
+                    <div id="subjectBatchContainer" class="batch-manager" hidden>
+                        <label for="subjectBatchSelect">Practical Batches</label>
+                        <div class="batch-manager-row">
+                            <select id="subjectBatchSelect">
+                                <option value="">Select Batch</option>
+                                <option value="A">Batch A</option>
+                                <option value="B">Batch B</option>
+                                <option value="C">Batch C</option>
+                                <option value="D">Batch D</option>
+                                <option value="E">Batch E</option>
+                            </select>
+                            <button type="button" id="addSubjectBatchBtn">+ Add Batch</button>
+                        </div>
+                        <div id="subjectBatchList" class="batch-list" aria-live="polite"></div>
+                        <small>Select the batches that will attend this practical. You can add A, B, C, etc.</small>
+                    </div>
+
+                    <button type="submit">Add Subject</button>
+
+                    <button type="button" id="addCustomSubjectBtn">
+                        + Add Custom Subject
+                    </button>
+
+                </form>
+            </article>
+
+            <article id="customSubjectContainer" hidden>
+
+                <h3>Add Custom Subject</h3>
+                <p>
+                    Use this when a subject is introduced, changed,
+                    or is not available in the current SPPU database.
+                </p>
+
+                <form id="customSubjectForm">
+
+                    <div>
+                        <label for="customSubjectShortName">Subject Short Name</label>
+                        <input type="text" id="customSubjectShortName"
+                               placeholder="Example: AI" required>
+                    </div>
+
+                    <div>
+                        <label for="customSubjectFullName">Subject Full Name</label>
+                        <input type="text" id="customSubjectFullName"
+                               placeholder="Example: Artificial Intelligence" required>
+                    </div>
+
+                    <div>
+                        <label for="customAcademicYear">Academic Year</label>
+                        <select id="customAcademicYear" required>
+                            <option value="">Select Academic Year</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="customSubjectYear">Year</label>
+                        <select id="customSubjectYear" required>
+                            <option value="">Select Year</option>
+                            <option value="2">Second Year</option>
+                            <option value="3">Third Year</option>
+                            <option value="4">Fourth Year</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="customSubjectSemester">Semester</label>
+                        <select id="customSubjectSemester" required>
+                            <option value="">Select Semester</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="customSubjectType">Subject Type</label>
+                        <select id="customSubjectType" required>
+                            <option value="">Select Type</option>
+                            <option value="Theory">Theory</option>
+                            <option value="Laboratory">Laboratory</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="customSubjectTeacher">Faculty</label>
+                        <select id="customSubjectTeacher" required>
+                            <option value="">Select Faculty</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="customWeeklyClasses">Lectures / Week</label>
+                        <input type="number" id="customWeeklyClasses"
+                               min="1" max="10" value="3" required>
+                    </div>
+
+                    <div id="customBatchContainer" class="batch-manager" hidden>
+                        <label for="customBatchSelect">Practical Batches</label>
+                        <div class="batch-manager-row">
+                            <select id="customBatchSelect">
+                                <option value="">Select Batch</option>
+                                <option value="A">Batch A</option>
+                                <option value="B">Batch B</option>
+                                <option value="C">Batch C</option>
+                                <option value="D">Batch D</option>
+                                <option value="E">Batch E</option>
+                            </select>
+                            <button type="button" id="addCustomBatchBtn">+ Add Batch</button>
+                        </div>
+                        <div id="customBatchList" class="batch-list" aria-live="polite"></div>
+                        <small>Select the batches that will attend this practical.</small>
+                    </div>
+
+                    <button type="submit">Add Custom Subject</button>
+
+                    <button type="button" id="cancelCustomSubjectBtn">
+                        Cancel
+                    </button>
+
+                </form>
+            </article>
+
+            <article id="bulkBatchArticle">
+                <h3>⚡ Add Batches to Multiple Practical Subjects</h3>
+                <p class="bulk-batch-help">Select multiple laboratory subjects, choose one or more batches, and add them all at once.</p>
+                <div class="bulk-batch-toolbar">
+                    <button type="button" id="bulkSelectAllSubjectsBtn">Select All Practical Subjects</button>
+                    <button type="button" id="bulkClearSubjectsBtn" class="secondary-button">Clear Selection</button>
+                </div>
+                <div id="bulkBatchSubjects" class="bulk-batch-subjects"><p class="empty-bulk-batch">No laboratory subjects registered yet.</p></div>
+                <div class="bulk-batch-picker">
+                    <strong>Select batches to add:</strong>
+                    <label><input type="checkbox" class="bulk-batch-option" value="A"> Batch A</label>
+                    <label><input type="checkbox" class="bulk-batch-option" value="B"> Batch B</label>
+                    <label><input type="checkbox" class="bulk-batch-option" value="C"> Batch C</label>
+                    <label><input type="checkbox" class="bulk-batch-option" value="D"> Batch D</label>
+                    <label><input type="checkbox" class="bulk-batch-option" value="E"> Batch E</label>
+                    <button type="button" id="addBulkBatchesBtn">+ Add Selected Batches to Selected Subjects</button>
+                </div>
+                <p id="bulkBatchMessage" class="bulk-batch-message" aria-live="polite"></p>
+            </article>
+
+            <article>
+                <h3>Registered Subjects</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Academic Year</th>
+                            <th>Year</th>
+                            <th>Semester</th>
+                            <th>Type</th>
+                            <th>Faculty</th>
+                            <th>Lectures / Week</th>
+                            <th>Batches</th>
+                            <th>Source</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="subjectTableBody">
+                        <!-- Subjects will be inserted here -->
+                    </tbody>
+                </table>
+            </article>
+
+        </section>
+
+
+        <!-- =============================================
+             CLASSROOM / LAB MANAGEMENT
+        ============================================== -->
+
+        <section id="roomSection"
+                 hidden>
+
+            <h2>
+                🏫 Classroom & Laboratory Management
+            </h2>
+
+
+            <article>
+
+                <h3>
+                    Add Classroom / Laboratory
+                </h3>
+
+
+                <form id="roomForm">
+
+
+                    <div>
+
+                        <label for="roomNumber">
+                            Room Number / Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="roomNumber"
+                            name="roomNumber"
+                            placeholder="Example: Room 101"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="roomType">
+                            Room Type
+                        </label>
+
+                        <select
+                            id="roomType"
+                            name="roomType"
+                            required
+                        >
+
+                            <option value="">
+                                Select Type
+                            </option>
+
+                            <option value="Classroom">
+                                Classroom
+                            </option>
+
+                            <option value="Laboratory">
+                                Laboratory
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="roomCapacity">
+                            Capacity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="roomCapacity"
+                            name="roomCapacity"
+                            min="1"
+                            placeholder="Example: 60"
+                            required
+                        >
+
+                    </div>
+
+                    <div id="labSubjectsContainer" style="display: none;">
+
+                        <label for="labSubjects">
+                            Practical Subjects This Laboratory Can Conduct
+                        </label>
+
+                        <select
+                            id="labSubjects"
+                            multiple
+                        >
+                        </select>
+
+                        <small>
+                            Hold Ctrl and select all practical subjects
+                            that can be conducted in this laboratory.
+                        </small>
+
+                    </div>
+
+                        <button type="submit" id="roomSubmitButton">
+                            Add Room
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelRoomEditButton"
+                            style="display: none;"
+                        >
+                            Cancel Edit
+                        </button>
+
+                    </form>
+
+                </article>
+
+
+            <!-- ROOM TABLE -->
+
+            <article>
+
+                <h3>
+                    Registered Classrooms & Laboratories
+                </h3>
+
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Room
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Capacity
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="roomTableBody">
+
+                        <!-- Rooms will be inserted here -->
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+        </section>
+
+
+        <!-- =============================================
+             MANUAL CLASS ASSIGNMENT
+        ============================================== -->
+
+        <section id="assignmentSection"
+                 hidden>
+
+            <h2>
+                📝 Manual Class Assignment
+            </h2>
+
+
+            <article>
+
+                <h3>
+                    Assign Subject
+                </h3>
+
+
+                <form id="assignmentForm">
+
+
+                    <div>
+
+                        <label for="assignmentYear">
+                             Year
+                        </label>
+
+                        <select
+                            id="assignmentYear"
+                            required
+                        >
+
+                            <option value="">
+                                Select Year
+                            </option>
+
+                            <option value="2">
+                                Second Year
+                            </option>
+
+                            <option value="3">
+                                Third Year
+                            </option>
+
+                            <option value="4">
+                                Fourth Year
+                            </option>
+
+                        </select>
+
+                    </div>
+                    <div>
+
+                        <label for="assignmentSemester">
+                            Semester
+                        </label>
+
+                        <select
+                            id="assignmentSemester"
+                            required
+    >
+
+                            <option value="">
+                                Select Semester
+                            </option>
+
+                            <option value="1">
+                                Semester 1
+                            </option>
+
+                            <option value="2">
+                                Semester 2
+                            </option>
+
+                            <option value="3">
+                                Semester 3
+                            </option>
+
+                            <option value="4">
+                                Semester 4
+                            </option>
+
+                            <option value="5">
+                                Semester 5
+                            </option>
+
+                            <option value="6">
+                                Semester 6
+                            </option>
+
+                            <option value="7">
+                                Semester 7
+                            </option>
+
+                            <option value="8">
+                                Semester 8
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label for="assignmentDay">
+                            Day
+                        </label>
+
+                        <select
+                            id="assignmentDay"
+                            required
+                        >
+
+                            <option value="">
+                                Select Day
+                            </option>
+
+                            <option value="Monday">
+                                Monday
+                            </option>
+
+                            <option value="Tuesday">
+                                Tuesday
+                            </option>
+
+                            <option value="Wednesday">
+                                Wednesday
+                            </option>
+
+                            <option value="Thursday">
+                                Thursday
+                            </option>
+
+                            <option value="Friday">
+                                Friday
+                            </option>
+
+                            <option value="Saturday">
+                                Saturday
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentTime">
+                            Time
+                        </label>
+
+                        <select
+                            id="assignmentTime"
+                            required
+                        >
+
+                            <option value="">
+                                Select Time
+                            </option>
+
+                            <option value="">Select a subject first</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentSubject">
+                            Subject
+                        </label>
+
+                        <select
+                            id="assignmentSubject"
+                            required
+                        >
+
+                            <option value="">
+                                Select Subject
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div id="assignmentBatchContainer" class="batch-manager" hidden>
+                        <label for="assignmentBatch">Practical Batch</label>
+                        <select id="assignmentBatch">
+                            <option value="">No batch / select subject first</option>
+                        </select>
+                        <small>Select the batch for this practical assignment.</small>
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentTeacher">
+                            Teacher
+                        </label>
+
+                        <select
+                            id="assignmentTeacher"
+                            required
+                        >
+
+                            <option value="">
+                                Select Teacher
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentRoom">
+                            Classroom / Laboratory
+                        </label>
+
+                        <select
+                            id="assignmentRoom"
+                            required
+                        >
+
+                            <option value="">
+                                Select Room
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button type="submit">
+                        Assign Class
+                    </button>
+
+
+                    <p id="conflictMessage">
+                    </p>
+
+
+                </form>
+
+            </article>
+
+        </section>
+
+
+        <!-- =============================================
+             AUTOMATIC TIMETABLE
+        ============================================== -->
+
+        <!-- =============================================
+     AUTOMATIC TIMETABLE
+============================================= -->
+
+<section id="timetableSection"
+         hidden>
+
+    <h2>
+        📅 Automatic Timetable Generator
+    </h2>
+
+
+    <!-- =========================================
+         GENERATE TIMETABLE
+    ========================================== -->
+
+    <article>
+
+        <h3>
+            Generate Complete University Timetable
+        </h3>
+
+
+        <p>
+
+            The system will automatically generate timetables
+            for Second Year, Third Year and Fourth
+            Year at the same time.
+
+        </p>
+
+        <br>
+
+
+        <div>
+
+            <label for="timetableAcademicYear">
+                Academic Year
+            </label>
+
+            <select
+                id="timetableAcademicYear"
+            >
+
+                <option value="">
+                    Select Academic Year
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <br>
+
+
+        <div>
+
+            <strong>
+
+                The generator will automatically schedule:
+
+            </strong>
+
+            <br>
+            <br>
+
+            Second Year → Semester 3 and Semester 4
+
+            <br>
+
+            Third Year → Semester 5 and Semester 6
+
+            <br>
+
+            Fourth Year → Semester 7 and Semester 8
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            type="button"
+            id="generateButton"
+        >
+
+            ⚙ Generate Complete Timetable
+
+        </button>
+
+
+        <button
+            type="button"
+            id="downloadButton"
+        >
+
+            ⬇ Download Timetable PDF
+
+        </button>
+
+
+        <button
+            type="button"
+            id="printButton"
+        >
+
+            🖨 Print / Save PDF
+
+        </button>
+
+
+        <p
+            id="generationMessage"
+        >
+
+        </p>
+
+
+    </article>
+
+
+    <!-- =========================================
+         BREAK INFORMATION
+    ========================================== -->
+
+    <article>
+
+        <h3>
+            Break Schedule
+        </h3>
+
+
+        <ul>
+
+            <li>
+
+                🧘 Meditation:
+
+                09:00 AM - 09:15 AM
+
+            </li>
+
+
+            <li>
+
+                ☕ Short Break:
+
+                11:15 AM - 11:30 AM
+
+            </li>
+
+
+            <li>
+
+                🍴 Lunch Break:
+
+                01:30 PM - 02:15 PM
+
+            </li>
+
+
+        </ul>
+
+
+    </article>
+
+
+    <!-- =========================================
+         SECOND YEAR
+    ========================================== -->
+
+    <article id="secondYearTimetable">
+
+        <h3>
+            🎓 Second Year Timetable
+        </h3>
+
+
+        <div
+            class="semester-selector"
+        >
+
+            <label
+                for="secondYearSemester"
+            >
+
+                Select Semester
+
+            </label>
+
+
+            <select
+                id="secondYearSemester"
+            >
+
+                <option value="3">
+
+                    Semester 3
+
+                </option>
+
+
+                <option value="4">
+
+                    Semester 4
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <br>
+
+
+        <div
+            class="timetable-wrapper"
+        >
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Time
+                        </th>
+
+                        <th>
+                            Monday
+                        </th>
+
+                        <th>
+                            Tuesday
+                        </th>
+
+                        <th>
+                            Wednesday
+                        </th>
+
+                        <th>
+                            Thursday
+                        </th>
+
+                        <th>
+                            Friday
+                        </th>
+
+                        <th>
+                            Saturday
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="secondYearTableBody"
+                >
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+    </article>
+
+
+    <!-- =========================================
+         THIRD YEAR
+    ========================================== -->
+
+    <article id="thirdYearTimetable">
+
+        <h3>
+            🎓 Third Year Timetable
+        </h3>
+
+
+        <div
+            class="semester-selector"
+        >
+
+            <label
+                for="thirdYearSemester"
+            >
+
+                Select Semester
+
+            </label>
+
+
+            <select
+                id="thirdYearSemester"
+            >
+
+                <option value="5">
+
+                    Semester 5
+
+                </option>
+
+
+                <option value="6">
+
+                    Semester 6
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <br>
+
+
+        <div
+            class="timetable-wrapper"
+        >
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Time
+                        </th>
+
+                        <th>
+                            Monday
+                        </th>
+
+                        <th>
+                            Tuesday
+                        </th>
+
+                        <th>
+                            Wednesday
+                        </th>
+
+                        <th>
+                            Thursday
+                        </th>
+
+                        <th>
+                            Friday
+                        </th>
+
+                        <th>
+                            Saturday
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="thirdYearTableBody"
+                >
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+    </article>
+
+
+    <!-- =========================================
+         FOURTH YEAR
+    ========================================== -->
+
+    <article id="fourthYearTimetable">
+
+        <h3>
+            🎓 Fourth Year Timetable
+        </h3>
+
+
+        <div
+            class="semester-selector"
+        >
+
+            <label
+                for="fourthYearSemester"
+            >
+
+                Select Semester
+
+            </label>
+
+
+            <select
+                id="fourthYearSemester"
+            >
+
+                <option value="7">
+
+                    Semester 7
+
+                </option>
+
+
+                <option value="8">
+
+                    Semester 8
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <br>
+
+
+        <div
+            class="timetable-wrapper"
+        >
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Time
+                        </th>
+
+                        <th>
+                            Monday
+                        </th>
+
+                        <th>
+                            Tuesday
+                        </th>
+
+                        <th>
+                            Wednesday
+                        </th>
+
+                        <th>
+                            Thursday
+                        </th>
+
+                        <th>
+                            Friday
+                        </th>
+
+                        <th>
+                            Saturday
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="fourthYearTableBody"
+                >
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+    </article>
+
+
+</section>
+
+
+    </main>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="college-footer">
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img src="https://d107tomoq7qta0.cloudfront.net/images/universities-logos/pcU6Zba12mosyv7i5H5iyetOd1KRG2Hdz2LN67im.jpg" alt="Bharati Vidyapeeth Logo">
+            </div>
+
+            <div>
+                <p class="footer-brand-top">BHARATI VIDYAPEETH</p>
+                <h3>College of Engineering for Women, Pune</h3>
+                <p>Automatic Timetable Management System</p>
+            </div>
+        </div>
+
+        <div class="footer-contact">
+            <div class="contact-item">
+                <span class="contact-icon">✉</span>
+                <div>
+                    <strong>Email</strong>
+                    <span>coewpune@bharatividyapeeth.edu</span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-icon">☎</span>
+                <div>
+                    <strong>Phone</strong>
+                    <span>020-24371684 / 020-24361732</span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-icon">⌖</span>
+                <div>
+                    <strong>Address</strong>
+                    <span>Pune-Satara Road, Dhankawadi, Pune - 411043, Maharashtra, India</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Bharati Vidyapeeth's College of Engineering for Women, Pune | Automatic Timetable Management System
+    </div>
+</footer>
+
+
+</section>
+
+
+<!-- PDF generation libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+
+<script type="module" src="script.js"></script>
+
+
+</body>
+
+</html>
